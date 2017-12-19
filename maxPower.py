@@ -1,4 +1,10 @@
-import xml.etree.ElementTree
-e = xml.etree.ElementTree.parse('testFile.gpx').getroot()
+import xml.etree.ElementTree as ET
+tree = ET.parse('testFile.gpx')
+root = tree.getroot()
 
-print(e)
+print(root)
+
+for powerStep in root.iter("{http://www.topografix.com/GPX/1/1}power"):
+    print(powerStep.text)
+
+
