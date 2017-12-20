@@ -1,4 +1,6 @@
 import xml.etree.ElementTree as ET
+import plotly
+from plotly.graph_objs import Scatter, Layout
 
 tree = ET.parse('testFile.gpx')
 powerTag = "{http://www.topografix.com/GPX/1/1}power"
@@ -20,7 +22,13 @@ def maxIntPow(steps, interval):
     return maxInt
 
 
-for i in range(1,len(steps)):
-    print(str(i) + "s max:" , maxIntPow(steps, i))
+data = list()
+#for i in range(1,len(steps)):
+for i in range(1,61): 
+    maxInt = maxIntPow(steps, i)
+    data.append(maxInt)
 
-
+plotly.offline.plot({
+    "data": [Scatter(x=range(1,61), y=data)],
+    "layout": Layout(title="Power Curve")
+})
