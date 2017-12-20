@@ -1,6 +1,9 @@
 import xml.etree.ElementTree as ET
 import plotly
 from plotly.graph_objs import Scatter, Layout
+import time
+
+t = time.time()
 
 tree = ET.parse('testFile.gpx')
 powerTag = "{http://www.topografix.com/GPX/1/1}power"
@@ -25,10 +28,15 @@ def maxIntPow(steps, interval):
 data = list()
 #for i in range(1,len(steps)):
 for i in range(1,61): 
+    t2 = time.time()
     maxInt = maxIntPow(steps, i)
     data.append(maxInt)
+    print("Loop time:", time.time() - t2)
 
 plotly.offline.plot({
     "data": [Scatter(x=range(1,61), y=data)],
     "layout": Layout(title="Power Curve")
 })
+
+elapsed = time.time() - t
+print("Elapsed time:" + str(elapsed))
