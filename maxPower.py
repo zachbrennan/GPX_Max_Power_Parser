@@ -1,10 +1,3 @@
-import xml.etree.ElementTree as ET
-import plotly
-from plotly.graph_objs import Scatter, Layout
-import time
-import sys
-
-
 def maxIntPow(steps, interval):
     maxInt = 0
     tempInt = 0
