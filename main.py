@@ -8,11 +8,17 @@ import sys
 t = time.time()
 
 interval = 120
-if (len(sys.argv) > 1):
-    if (int(sys.argv[1] > 0)):
-        interval = int(sys.argv[1])
 
-tree = ET.parse('testFile.gpx')
+if (len(sys.argv) < 2):
+    exit("No file arg")
+else:
+    fileName = sys.argv[1]
+if (len(sys.argv) > 2):
+    if (int(sys.argv[2] > 0)):
+        interval = int(sys.argv[2])
+    
+
+tree = ET.parse(fileName)
 powerTag = "{http://www.topografix.com/GPX/1/1}power"
 root = tree.getroot()
 steps = list(root.iter(powerTag))    
